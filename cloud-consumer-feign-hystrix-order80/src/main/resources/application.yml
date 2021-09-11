@@ -1,0 +1,20 @@
+server:
+  port: 80
+
+eureka:
+  client:
+    register-with-eureka: false  #表示是否将自己注册进EurekaServer 默认true
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+
+#以下是调用接口设置Feign的时间，Feign默认1s，超过就返回
+#ribbon:
+#  #指的是建立连接后从服务器读取到可用资源所用的时间
+#  ReadTimeout: 6000
+#  #指的是建立连接所用数据，适用于网络状态正常情况下，两端连接所用的时间
+#  ConnectTimeout: 6000
+
+feign:
+  hystrix:
+    enabled: true #在feign中开启Hystrix ,例如：@FeignClient(value="CLOUD-PROVIDER-HYSTRIX-PAYMENT",fallback = PaymentFallbackService.class)
+

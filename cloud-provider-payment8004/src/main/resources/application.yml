@@ -1,0 +1,14 @@
+server:
+  port: 8004
+spring:
+  application:
+    name: cloud-provider-payment  #微服务名称
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource   #当前数据源操作类型
+    driver-class-name: org.gjt.mm.mysql.Driver     #mysql驱动类
+    url: jdbc:mysql://localhost:3306/db2020?useUnicode=true&charactorEncoding=utf-8&useSSL=false
+    username: root
+    password: warrior_520
+  cloud:
+    zookeeper:
+      connect-string: 192.168.57.130:2181
