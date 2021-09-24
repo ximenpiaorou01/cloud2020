@@ -1,18 +1,39 @@
 server:
    port: 3344
-   spring:
-     application:
-       name: cloud-server-config
-     cloud:
-       config:
-         server:
-           git:
-             uri: git@github.com:ximenpiaorou01/springcloud-config.git
-             search-paths: #搜寻目录
-               - springcloud-config
-         label: main #分支
 
-   eureka:
-     client:
-       service-url:
-         defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+spring:
+ application:
+   name: cloud-server-config
+ cloud:
+   config:
+     server:
+       git:
+         uri: https://github.com/ximenpiaorou01/springcloud-config.git
+         username: ximenpiaorou01
+         password: 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
+         search-paths: #搜寻目录
+           - springcloud-config
+     label: main #分支
+
+#rabbitmq相关配置
+rabbitmq:
+  host: localhost
+  port: 5672
+  username: guest
+  password: guest
+
+#像注册中心注册
+eureka:
+ client:
+   service-url:
+     defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+
+#github token: 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
+
+#rabbitmq 相关配置，暴露bus刷新配置的端口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh' #运维人员修改github的配置文件后，执行curl -X POST "http://localhost:3344/actuator/bus-refresh"，
+                               #广播配置服务中心，其他节点即可动态刷新运维修改的数据

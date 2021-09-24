@@ -13,6 +13,16 @@
 
     <dependencies>
 
+        <!--消息总线RabbitMQ，一种是通知某个客户端，客户端再通知其他服务动态刷新，
+        另一种是先通知服务中心，再有服务中心通知其他微服务客户端-->
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+        </dependency>
+
+
+        <!--配置中心-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-config-server</artifactId>
