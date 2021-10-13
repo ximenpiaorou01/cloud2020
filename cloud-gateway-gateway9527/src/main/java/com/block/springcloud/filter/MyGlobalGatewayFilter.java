@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
@@ -15,7 +16,9 @@ import java.util.Date;
 @Slf4j
 /**
  * 全局过滤器必须继承GlobalFilter,Ordered
+ * #spring-gateway先加载这个yml里default-filters,再加载routes里的filters,最后加载globalFilter
  */
+//@Order(value = -1)
 public class MyGlobalGatewayFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
@@ -29,6 +32,10 @@ public class MyGlobalGatewayFilter implements GlobalFilter, Ordered {
         return chain.filter(exchange);
     }
 
+    /**
+     * 值越小，表示越优先执行
+     * @return
+     */
     @Override
     public int getOrder() {
         return 0;
