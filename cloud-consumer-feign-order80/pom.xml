@@ -17,6 +17,11 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
+        <!--feign默认使用jdk的URLConnection，不支持连接池，优化时使用httpClient连接池的依赖，也可以使用okhttp-->
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-httpclient</artifactId>
+        </dependency>
         <!--eureka客户端-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

@@ -16,3 +16,13 @@ logging:
     #feign日志以什么级别监控哪个接口
     com.block.springcloud.service.PaymentFeignService: debug
 
+
+feign:
+  client:
+    config:
+      default: #default全局配置，也可以指定某个微服务名来配置
+        loggerLevel: BASIC #日志级别
+  httpclient:
+    enabled: true #开启feign对httpClient的支持，feign默认还有jdk的URLConnection，不支持连接池，优化使用httpclient或者okhttp连接池
+    max-connections: 200 #最大连接数
+    max-connections-per-route: 50 #每个路径的最大连接数
